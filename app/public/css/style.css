@@ -1,0 +1,104 @@
+header {
+    background-color: orange;
+}
+
+footer {
+    background-color: orange;
+}
+
+.music_services {
+    font-size: 18px;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+/* Style the navigation bar */
+.navbar {
+background-color: #333;
+overflow: hidden;
+}
+
+/* Style the navigation links */
+.navbar li {
+float: left;
+}
+
+.navbar li a {
+display: block;
+color: #fff;
+text-align: center;
+padding: 14px 16px;
+text-decoration: none;
+}
+
+/* Change the color of the active link */
+.navbar li a.active {
+background-color: orange;
+}
+
+label {
+display: block;
+margin-bottom: 10px;
+}
+
+input[type="text"],
+input[type="date"],
+select {
+width: 100%;
+padding: 8px;
+margin-bottom: 15px;
+border: 1px solid #ccc;
+border-radius: 4px;
+box-sizing: border-box;
+}
+
+input[type="submit"] {
+background-color: #4CAF50;
+color: white;
+padding: 10px 15px;
+border: none;
+border-radius: 4px;
+cursor: pointer;
+}
+
+input[type="button"] {
+    background-color: red;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    }
+
+#delete_song {
+    text-align: center;
+}
+
+#select_genre {
+    text-align: center;
+}
+
+.grid-container {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  .grid-container th, .grid-container td {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  
+  .grid-container th {
+    background-color: #333;
+    color: #fff;
+  }
+
+.form {
+    border: 2px solid #333;
+    padding: 20px;
+    margin: 0 auto;
+}

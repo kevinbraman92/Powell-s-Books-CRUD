@@ -1,0 +1,84 @@
+ <script>
+        function searchBooks(event) {
+            event.preventDefault(); 
+            const bookTitle = document.getElementById('book_title').value;
+            fetch(`/books?book_title=${encodeURIComponent(bookTitle)}`)
+                .then(response => response.json())
+                .then(displayBooks)
+                .catch(error => console.error('Error fetching books:', error));
+            
+        }
+
+        document.getElementById('reset-button-books').addEventListener('click', resetSearch);
+
+        function resetSearch(event) {
+            event.preventDefault(); 
+            document.getElementById('book_title').value = ''; 
+            const booksTableBody = document.getElementById('booksTableBody');
+            booksTableBody.innerHTML = '';
+        }
+    
+        function displayBooks(books) {
+            const booksTableBody = document.getElementById('booksTableBody');
+            booksTableBody.innerHTML = '';
+
+            for (const book of books) {
+                const bookRow = document.createElement('tr');
+                bookRow.innerHTML = `
+                    <td>${book.book_id}</td>
+                    <td>${book.book_isbn}</td>
+                    <td>${book.book_title}</td>
+                    <td>${book.book_authors}</td>
+                    <td>${book.book_publish_date}</td>
+                    <td>${book.book_inventory}</td>
+                    <td>${book.book_unit_price}</td>
+                    <td>${book.genre_name}</td>
+                    <td><button>Delete</button></td>
+                `;
+                booksTableBody.appendChild(bookRow);
+            }
+        }
+
+        function createBook(event) {
+            event.preventDefault();
+            const bookISBN = document.getElementById('bookISBN').value;
+            const bookTitle = document.getElementById('bookTitle').value;
+            const bookAuthors = document.getElementById('bookAuthors').value;
+            const publishDate = document.getElementById('publishDate').value;
+            const bookInventory = document.getElementById('bookInventory').value;
+            const unitPrice = document.getElementById('unitPrice').value;
+            const bookGenre = document.getElementById('bookGenre').value;
+            const bookData = {
+                book_isbn: bookISBN,
+                book_title: bookTitle,
+                book_authors: bookAuthors,
+                book_publish_date: publishDate,
+                book_inventory: bookInventory,
+                book_unit_price: unitPrice,
+                genre_name: bookGenre
+            };
+
+            fetch('/books', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(bookData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Book created:', data);
+
+                document.getElementById('bookISBN').value = '';
+                document.getElementById('bookTitle').value = '';
+                document.getElementById('bookAuthors').value = '';
+                document.getElementById('publishDate').value = '';
+                document.getElementById('bookInventory').value = '';
+                document.getElementById('unitPrice').value = '';
+                document.getElementById('bookGenre').value = 'Select Genre';
+            })
+            .catch(error => console.error('Error creating book:', error));
+            }
+
+        document.getElementById('add-form').addEventListener('submit', createBook);
+    </script>
